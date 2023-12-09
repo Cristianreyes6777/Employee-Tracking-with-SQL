@@ -26,6 +26,12 @@ Console.Table
 ## Screenshots and Videos
 
 
+![image](https://github.com/Cristianreyes6777/Employee-Tracking-with-SQL/assets/135755569/7bbe8962-55ca-46c7-91a0-9e99f9e8bd4f)
+
+![image](https://github.com/Cristianreyes6777/Employee-Tracking-with-SQL/assets/135755569/6a94db7e-e494-47b2-8904-a1f04938984c)
+
+https://drive.google.com/file/d/1K5c4Hs92smMr9UjlHjXQqy2rIwKngrZ4/view
+
 
 
 
