@@ -5,6 +5,7 @@ const Role = require('./lib/Role');
 const Employee = require('./lib/Employee');
 const mysql = require("mysql2");
 
+
 function mainMenu() {
     inquirer
         .prompt({
@@ -23,7 +24,6 @@ function mainMenu() {
                 "View Employees by Manager",
                 "View Employees by Department",
                 "Delete Departments | Roles | Employees",
-                "View the total utilized budget of a department",
                 "Exit",
             ],
         })
@@ -62,11 +62,8 @@ function mainMenu() {
                 case "Delete Departments | Roles | Employees":
                     deleteDepartmentsRolesEmployees();
                     break;
-                case "View the total utilized budget of a department":
-                    viewTotalUtilizedBudgetOfDepartment();
-                    break;
                 case "Exit":
-                    connection.end();
+                    db.end();
                     console.log("Goodbye!");
                     break;
             }
