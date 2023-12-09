@@ -19,10 +19,6 @@ function mainMenu() {
                 "Add a department",
                 "Add a role",
                 "Add an employee",
-                "Add a Manager",
-                "Update an employee role",
-                "View Employees by Manager",
-                "View Employees by Department",
                 "Delete Departments | Roles | Employees",
                 "Exit",
             ],
@@ -46,18 +42,6 @@ function mainMenu() {
                     break;
                 case "Add an employee":
                     addEmployee();
-                    break;
-                case "Add a Manager":
-                    addManager();
-                    break;
-                case "Update an employee role":
-                    updateEmployeeRole();
-                    break;
-                case "View Employees by Manager":
-                    viewEmployeesByManager();
-                    break;
-                case "View Employees by Department":
-                    viewEmployeesByDepartment();
                     break;
                 case "Delete Departments | Roles | Employees":
                     deleteDepartmentsRolesEmployees();
@@ -178,6 +162,8 @@ function deleteDepartmentsRolesEmployees() {
                 break;
         }
     });
+
+
 
 }
 
