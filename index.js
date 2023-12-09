@@ -5,7 +5,7 @@ const Role = require('./lib/Role');
 const Employee = require('./lib/Employee');
 const mysql = require("mysql2");
 
-function start() {
+function mainMenu() {
     inquirer
         .prompt({
             type: "list",
@@ -153,6 +153,105 @@ function addRole() {
     });
 }
 
+
+function deleteDepartmentsRolesEmployees() {
+    inquirer.prompt({
+        type: 'list',
+        name: 'entity',
+        message: 'What would you like to delete?',
+        choices: [
+            'Department',
+            'Role',
+            'Employee',
+        ],
+    }).then(answer => {
+        switch (answer.entity) {
+            case 'Department':
+                deleteDepartment();
+                break;
+            case 'Role':
+                deleteRole();
+                break;
+            case 'Employee':
+                deleteEmployee();
+                break;
+            default:
+                console.log(`Invalid entity: ${answer.entity}`);
+                mainMenu();
+                break;
+        }
+    });
+
+}
+
+function deleteDepartment() {
+    const department = new Department();
+    department.viewAll().then(([departments]) => {
+        const departmentChoices = departments.map(({ id, name }) => ({
+            name: name,
+            value: id
+        }));
+
+        return inquirer.prompt({
+            type: 'list',
+            name: 'departmentId',
+            message: 'Which department would you like to delete?',
+            choices: departmentChoices
+        });
+    }).then(answer => {
+        return department.delete(answer.departmentId);
+    }).then(() => {
+        console.log('Department deleted successfully');
+        mainMenu();
+    }).catch(err => console.error(err));
+}
+
+function deleteRole() {
+    const role = new Role();
+    role.viewAll().then(([roles]) => {
+        const roleChoices = roles.map(({ id, title }) => ({
+            name: title,
+            value: id
+        }));
+
+        return inquirer.prompt({
+            type: 'list',
+            name: 'roleId',
+            message: 'Which role would you like to delete?',
+            choices: roleChoices
+        });
+    }).then(answer => {
+        return role.delete(answer.roleId);
+    }).then(() => {
+        console.log('Role deleted successfully');
+        mainMenu();
+    }).catch(err => console.error(err));
+}
+
+function deleteEmployee() {
+    const employee = new Employee();
+    employee.viewAll().then(([employees]) => {
+        const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+            name: `${first_name} ${last_name}`,
+            value: id
+        }));
+
+        return inquirer.prompt({
+            type: 'list',
+            name: 'employeeId',
+            message: 'Which employee would you like to delete?',
+            choices: employeeChoices
+        });
+    }).then(answer => {
+        return employee.delete(answer.employeeId);
+    }).then(() => {
+        console.log('Employee deleted successfully');
+        mainMenu();
+    }).catch(err => console.error(err));
+}
+
+
+
 function addEmployee() {
     // Get roles and managers for choices
     const role = new Role();
@@ -203,4 +302,4 @@ function addEmployee() {
 
 
 
-start();
+mainMenu();
